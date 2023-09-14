@@ -75,6 +75,23 @@ app.get('/fetch-pdf', (req, res) => {
      res.sendFile(`${__dirname1}/invoice.pdf`)
 })
 
+// --------------------------deployment------------------------------
+const __dirname2 = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname2, "/frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname2, "frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
+// --------------------------deployment------------------------------
+
+
 app.use(notFound);
 app.use(errorHandler);
 
