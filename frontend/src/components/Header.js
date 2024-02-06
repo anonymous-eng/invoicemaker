@@ -53,7 +53,7 @@ const Header = () => {
 
   const submithandler = () => {
         if(!email || !password){
-          toast.waring("Fill all Neccessary Fields", {
+          toast.warning("Fill all Neccessary Fields", {
             position: "bottom-center",
             autoClose: 3000,
             hideProgressBar: false,
