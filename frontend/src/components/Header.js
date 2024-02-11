@@ -40,6 +40,7 @@ const Header = () => {
   }
 
   const clear = () => {
+    setName("");
     setEmail("");
     setPassword("");
     setConfirmPassword("");
