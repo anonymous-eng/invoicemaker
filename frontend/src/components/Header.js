@@ -17,6 +17,7 @@ const Header = () => {
   const [ showPassword, setShowPassword ] = useState(false);
   const [ showCPassword, setShowCPassword ] = useState(false);
   const [open, setOpen] = useState(false);
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -69,6 +70,34 @@ const Header = () => {
         if(isSignUp) {
             if(!name){
               toast.warning("Fill all Neccessary Fields", {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+              return;
+            }
+
+            if(!emailPattern.test(email)){
+              toast.warning("Please enter a valid email address", {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+              return;
+            }
+
+            if(password.length < 6){
+              toast.warning("Password should not be less than 6 characters", {
                 position: "bottom-center",
                 autoClose: 3000,
                 hideProgressBar: false,
